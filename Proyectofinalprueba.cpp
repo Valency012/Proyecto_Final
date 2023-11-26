@@ -2,9 +2,7 @@
 #include <fstream>
 #include <vector>
 
-
 using namespace std;
-
 
 struct Bebida
 {
@@ -47,6 +45,7 @@ void EliminarBebida(string);
 void AgregarBebida(Bebida);
 void AgregarVenta(Ventas);
 int BuscarUsuario(string, string);
+void RegistrarVenta(Ventas venta);
 
 vector<Bebida> packs;
 vector<Usuarios> usuario;
@@ -80,20 +79,20 @@ int main()
     int opcion1;
     int lote = 0;
 
-    //insertar datos vector
+    // insertar datos vector
     /*packs.push_back({1, "Roca", 1, 60.35, 4, 3.00});
     packs.push_back({2, "Pepsi", 2, 80.35, 4,3.00});
     packs.push_back({3, "CocaCola", 1, 90.35, 4, 3.00});
     packs.push_back({4, "SalvaCola", 2, 60.35, 4, 3.00});*/
 
-    //insertar datos vector usuarios, administrador
+    // insertar datos vector usuarios, administrador
     usuario.push_back({"admin123", "123", 1});
     usuario.push_back({"admin456", "456", 1});
     usuario.push_back({"admin789", "789", 2});
 
     // esto creo que no iria aqui xd
-    //Read_RegistroVentas();
-    //Write_RegistroVentas();
+    // Read_RegistroVentas();
+    // Write_RegistroVentas();
 
     cout << endl;
     cout << "             ------PEPITO'S------" << endl;
@@ -104,10 +103,10 @@ int main()
 
     // opcion de admi o usuario
 
-        //cout << "Seleccione la opcion:\n\n1. Opc. Administrador\n2. Opc. Cliente\n3. Salir\n"
-            //<< endl;
-        //cin >> opcion;
-        //cin.ignore();
+    // cout << "Seleccione la opcion:\n\n1. Opc. Administrador\n2. Opc. Cliente\n3. Salir\n"
+    //<< endl;
+    // cin >> opcion;
+    // cin.ignore();
 
     cout << "Ingrese su Usuario: ";
     cin >> nombre_usuario;
@@ -118,22 +117,23 @@ int main()
 
     tipo_usuario = BuscarUsuario(nombre_usuario, contrasenia);
 
-
-    do {
-    switch (tipo_usuario)
+    do
     {
-    case 1:
-        cout << "----- OPCIONES ADMINISTRADOR ----- " << endl;
-        cout << endl;
-        cout << "Presione (1) para el manejo de usuarios" << endl;
-        cout << "Presione (2) para el manejo de productos" << endl;
-        cout << "Presione (3) para el manejo de ventas" << endl;
-        cout << "Presione (4) para generar archivos" << endl;
-        cout << "Presione (5) para cerrar sesion" << endl;
-        cout << endl;
-        cin >> opcion;
+        switch (tipo_usuario)
+        {
+        case 1:
+            cout << "----- OPCIONES ADMINISTRADOR ----- " << endl;
+            cout << endl;
+            cout << "Presione (1) para el manejo de usuarios" << endl;
+            cout << "Presione (2) para el manejo de productos" << endl;
+            cout << "Presione (3) para el manejo de ventas" << endl;
+            cout << "Presione (4) para generar archivos" << endl;
+            cout << "Presione (5) para cerrar sesion" << endl;
+            cout << endl;
+            cin >> opcion;
 
-        switch(opcion){
+            switch (opcion)
+            {
             case 2:
                 cout << "----- MANEJO DE PRODUCTOS ----- " << endl;
                 cout << endl;
@@ -142,47 +142,47 @@ int main()
                 cout << "Presione (3) para regresar al menu anterior" << endl;
                 cin >> opcion1;
 
-                do {
-                    switch(opcion1){
-                        case 1:
-                            bebida.lote = lote + 1;
-                            cout << "Ingrese el nombre de la bebida: ";
-                            cin >> bebida.nombre_bebida;
-                            cout << "Tipos de pack" << endl;
-                            cout << "1 = Pack de 6 botellas" << endl;
-                            cout << "2 = Pack de 12 botellas" << endl;
-                            cout << "3 = Pack de 24 botellas" << endl;
-                            cout << "Ingrese el tipo de pack a comprar: ";
-                            cin >> bebida.tipo_bebida;
-                            cout << "Ingrese el precio total de su compra: ";
-                            cin >> bebida.precio;
-                            cout << "Ingrese la cantidad de packs: ";
-                            cin >> bebida.cantidad;
-                            cout << endl;
-                            cout << "El precio por pack es de $" << (bebida.precio/bebida.cantidad) << " le sugerimos ingresar un monto mayor para generar ganancia."<< endl;
-                            cout << "Ingrese el costo de venta por pack: ";
-                            cin >> bebida.precio_venta;
+                do
+                {
+                    switch (opcion1)
+                    {
+                    case 1:
+                        bebida.lote = lote + 1;
+                        cout << "Ingrese el nombre de la bebida: ";
+                        cin >> bebida.nombre_bebida;
+                        cout << "Tipos de pack" << endl;
+                        cout << "1 = Pack de 6 botellas" << endl;
+                        cout << "2 = Pack de 12 botellas" << endl;
+                        cout << "3 = Pack de 24 botellas" << endl;
+                        cout << "Ingrese el tipo de pack a comprar: ";
+                        cin >> bebida.tipo_bebida;
+                        cout << "Ingrese el precio total de su compra: ";
+                        cin >> bebida.precio;
+                        cout << "Ingrese la cantidad de packs: ";
+                        cin >> bebida.cantidad;
+                        cout << endl;
+                        cout << "El precio por pack es de $" << (bebida.precio / bebida.cantidad) << " le sugerimos ingresar un monto mayor para generar ganancia." << endl;
+                        cout << "Ingrese el costo de venta por pack: ";
+                        cin >> bebida.precio_venta;
 
-
-
-                            AgregarBebida(bebida);
-                            ImprimirBebidas();
-                            contador1 = 1;
+                        AgregarBebida(bebida);
+                        ImprimirBebidas();
+                        contador1 = 1;
                         break;
-                        case 2:
-                            ImprimirBebidas();
+                    case 2:
+                        ImprimirBebidas();
                         break;
-                        case 3:
-                            contador1 = 1;
+                    case 3:
+                        contador1 = 1;
                         break;
-                        default:
-                            cout << "Opcion no valida";
-                            contador1 = 1;
+                    default:
+                        cout << "Opcion no valida";
+                        contador1 = 1;
                         break;
                     }
-                } while(contador1 == 0);
-                    
-            break;
+                } while (contador1 == 0);
+
+                break;
             case 3:
                 cout << "----- MANEJO DE VENTAS ----- " << endl;
                 cout << endl;
@@ -191,70 +191,72 @@ int main()
                 cout << "Presione (3) para regresar al menu anterior" << endl;
                 cin >> opcion1;
 
-                do {
-                    switch(opcion1){
-                        case 1:
-                            ImprimirBebidas();
-                            cout << "Ingrese el nombre de la bebida: ";
-                            cin >> ventas.nombre_bebida;
+                do
+                {
+                    switch (opcion1)
+                    {
+                    case 1:
+                        ImprimirBebidas();
+                        cout << "Ingrese el nombre de la bebida: ";
+                        cin >> ventas.nombre_bebida;
 
-                            int packs6, packs12, packs24, lote;
+                        int packs6, packs12, packs24, lote;
 
-                            packs6 = BuscarBebidapack6(ventas.nombre_bebida);
-                            packs12 = BuscarBebidapack12(ventas.nombre_bebida);
-                            packs24 = BuscarBebidapack24(ventas.nombre_bebida);
+                        packs6 = BuscarBebidapack6(ventas.nombre_bebida);
+                        packs12 = BuscarBebidapack12(ventas.nombre_bebida);
+                        packs24 = BuscarBebidapack24(ventas.nombre_bebida);
 
-                            cout << "Tipos de packs disponibles" << endl;
-                            cout << "Usted tiene " << packs6 << " packs de 6 botellas disponibles" << endl;
-                            cout << "Usted tiene " << packs12 << " packs de 12 botellas disponibles" << endl;
-                            cout << "Usted tiene " << packs24 << " packs de 24 botellas disponibles" << endl;
-                            cout << endl;
-                            
-                            cout << "Su numero de lotes comprados son los siguientes:" << endl;
-                            ImprimirLotes(ventas.nombre_bebida);
+                        cout << "Tipos de packs disponibles" << endl;
+                        cout << "Usted tiene " << packs6 << " packs de 6 botellas disponibles" << endl;
+                        cout << "Usted tiene " << packs12 << " packs de 12 botellas disponibles" << endl;
+                        cout << "Usted tiene " << packs24 << " packs de 24 botellas disponibles" << endl;
+                        cout << endl;
 
-                            cout << "Ingrese el numero de lote: ";
-                            cin >> ventas.lote;
-                            cout << "Ingrese la cantidad de packs: ";
-                            cin >> ventas.cantidad;
+                        cout << "Su numero de lotes comprados son los siguientes:" << endl;
+                        ImprimirLotes(ventas.nombre_bebida);
 
-                            cout << "Ingrese el nombre de el consumidor: ";
-                            cin >> ventas.nombre_consumidor;
-                            int packs;
-                            float preciofinal;
+                        cout << "Ingrese el numero de lote: ";
+                        cin >> ventas.lote;
+                        cout << "Ingrese la cantidad de packs: ";
+                        cin >> ventas.cantidad;
 
-                            packs = BuscarBebidaPack(ventas.lote);
-                            preciofinal = BuscarPrecioVenta(ventas.lote);
+                        cout << "Ingrese el nombre de el consumidor: ";
+                        cin >> ventas.nombre_consumidor;
+                        int packs;
+                        float preciofinal;
 
-                            if(packs < ventas.cantidad){
-                                cout << "No tiene esa cantidad en el stock";
-                                return 0;
-                            }
-                            cout << endl;
-                            
-                            cout << "El costo final de su venta sera de: $" << (preciofinal * ventas.cantidad);
-                            ventas.precio_total = (preciofinal  * ventas.cantidad);
+                        packs = BuscarBebidaPack(ventas.lote);
+                        preciofinal = BuscarPrecioVenta(ventas.lote);
 
-
-                            AgregarVenta(ventas);
-                            ImprimirVentas();
+                        if (packs < ventas.cantidad)
+                        {
+                            cout << "No tiene esa cantidad en el stock";
                             return 0;
+                        }
+                        cout << endl;
+
+                        cout << "El costo final de su venta sera de: $" << (preciofinal * ventas.cantidad);
+                        ventas.precio_total = (preciofinal * ventas.cantidad);
+
+                        AgregarVenta(ventas);
+                        ImprimirVentas();
+                        RegistrarVenta(ventas);
+                        return 0;
                         break;
-                        case 2:
-                            ImprimirBebidas();
+                    case 2:
+                        ImprimirBebidas();
                         break;
-                        case 3:
-                            contador1 = 1;
+                    case 3:
+                        contador1 = 1;
                         break;
-                        default:
-                            cout << "Opcion no valida";
-                            contador1 = 1;
+                    default:
+                        cout << "Opcion no valida";
+                        contador1 = 1;
                         break;
                     }
-                } while(contador1 == 0);
+                } while (contador1 == 0);
 
-
-            break;
+                break;
             case 4:
                 cout << "De verdad desea cerrar sesion? Si = 1, No = 0" << endl;
                 cin >> sesion;
@@ -262,48 +264,50 @@ int main()
                 {
                     cout << "Ha cerrado sesion" << endl;
                     contador = 1;
-                } else if(sesion == 0){
+                }
+                else if (sesion == 0)
+                {
                     contador = 0;
-                } else {
+                }
+                else
+                {
                     cout << "Opcion no valida, cerrando sesion..." << endl;
                     cout << "Ha cerrado sesion" << endl;
                     contador = 1;
                 }
 
+                break;
+            }
+
             break;
-        }
 
-        break;
+        case 2:
+            cout << "----- OPCIONES EMPLEADO -----" << endl;
+            cout << endl;
+            cout << "Presione (1) para el manejo de ventas" << endl;
+            cout << "Presione (2) para generar archivos" << endl;
+            cout << "Presione (3) para cerrar sesion" << endl;
+            cout << endl;
+            cin >> opcion;
 
-    case 2:
-        cout << "----- OPCIONES EMPLEADO -----" << endl;
-        cout << endl;
-        cout << "Presione (1) para el manejo de ventas" << endl;
-        cout << "Presione (2) para generar archivos" << endl;
-        cout << "Presione (3) para cerrar sesion" << endl;
-        cout << endl;
-        cin >> opcion;
-
-
-
-        /*cout << "Informacion necesaria para la compra" << endl;
-        cout << endl;
-
-        cout << "Ingrese su nombre: ";
-            getline(cin, nombre);
-            // cin >> nombre;
+            /*cout << "Informacion necesaria para la compra" << endl;
             cout << endl;
 
-            cout << "Bebidas disponibles: " << endl;
-            ImprimirBebidas();
-            cout << endl;
-            break;*/
-        break;
+            cout << "Ingrese su nombre: ";
+                getline(cin, nombre);
+                // cin >> nombre;
+                cout << endl;
+
+                cout << "Bebidas disponibles: " << endl;
+                ImprimirBebidas();
+                cout << endl;
+                break;*/
+            break;
 
         default:
             break;
         }
-    } while(contador == 0);
+    } while (contador == 0);
     return 0;
 }
 
@@ -354,7 +358,12 @@ void ImprimirBebidas()
     for (Bebida bebida : packs)
     {
         cout << endl;
-        cout << bebida.nombre_bebida << endl << " el tipo de pack es: " << bebida.tipo_bebida << endl << " el precio total de la compra es de: $" << bebida.precio << endl << " la cantidad de packs comprados es de: " << bebida.cantidad << endl << " el precio de venta por pack sera de: $" << bebida.precio_venta << endl << " la ganancia por pack sera de: $" << (bebida.precio_venta - (bebida.precio/bebida.cantidad)) << endl;
+        cout << bebida.nombre_bebida << endl
+             << " el tipo de pack es: " << bebida.tipo_bebida << endl
+             << " el precio total de la compra es de: $" << bebida.precio << endl
+             << " la cantidad de packs comprados es de: " << bebida.cantidad << endl
+             << " el precio de venta por pack sera de: $" << bebida.precio_venta << endl
+             << " la ganancia por pack sera de: $" << (bebida.precio_venta - (bebida.precio / bebida.cantidad)) << endl;
     }
     cout << "\n\n";
 }
@@ -365,7 +374,10 @@ void ImprimirVentas()
     for (Ventas venta : venta)
     {
         cout << endl;
-        cout << " el nombre del consumidor es: " << venta.nombre_consumidor << endl << " el precio total de la compra es de: $" << venta.precio_total << endl << " la cantidad de packs comprados es de: " << venta.cantidad << endl << " el numero de lote utilizado fue el: " << venta.lote << endl;
+        cout << " el nombre del consumidor es: " << venta.nombre_consumidor << endl
+             << " el precio total de la compra es de: $" << venta.precio_total << endl
+             << " la cantidad de packs comprados es de: " << venta.cantidad << endl
+             << " el numero de lote utilizado fue el: " << venta.lote << endl;
     }
     cout << "\n\n";
 }
@@ -375,11 +387,16 @@ void ImprimirLotes(string nombre)
     // for off
     for (Bebida bebida : packs)
     {
-        if(nombre == bebida.nombre_bebida) {
+        if (nombre == bebida.nombre_bebida)
+        {
             cout << endl;
-            cout << " El numero de lote es: " << bebida.lote << endl << " el tipo de pack es: " << bebida.tipo_bebida << endl << " la cantidad de packs comprados es de: " << bebida.cantidad << endl << " el precio de venta por pack sera de: $" << bebida.precio_venta << endl << " la ganancia por pack sera de: $" << (bebida.precio_venta - (bebida.precio/bebida.cantidad)) << endl;
+            cout << " El numero de lote es: " << bebida.lote << endl
+                 << " el tipo de pack es: " << bebida.tipo_bebida << endl
+                 << " la cantidad de packs comprados es de: " << bebida.cantidad << endl
+                 << " el precio de venta por pack sera de: $" << bebida.precio_venta << endl
+                 << " la ganancia por pack sera de: $" << (bebida.precio_venta - (bebida.precio / bebida.cantidad)) << endl;
         }
-    }   
+    }
     cout << "\n\n";
 }
 
@@ -401,9 +418,9 @@ float BuscarPrecioVenta(int lote)
         if (lote == bebida.lote)
         {
             contadorventa = bebida.precio_venta;
-        } 
+        }
     }
-    //cout << "No se ha encontrado la bebida" << endl;
+    // cout << "No se ha encontrado la bebida" << endl;
     return contadorventa;
 }
 
@@ -415,9 +432,9 @@ int BuscarBebidaPack(int lote)
         if (lote == bebida.lote)
         {
             contadorpacks = bebida.cantidad;
-        } 
+        }
     }
-    //cout << "No se ha encontrado la bebida" << endl;
+    // cout << "No se ha encontrado la bebida" << endl;
     return contadorpacks;
 }
 int BuscarBebidapack6(string nombreBebida)
@@ -429,14 +446,17 @@ int BuscarBebidapack6(string nombreBebida)
         {
             /*cout << "Bebida encontrada\n Precio $" << bebida.precio << endl;
             return;*/
-            if(bebida.tipo_bebida == 1){
+            if (bebida.tipo_bebida == 1)
+            {
                 contadorpacks6 = contadorpacks6 + bebida.cantidad;
-            } else{
-                //cout << "No disponibles";
             }
-        } 
+            else
+            {
+                // cout << "No disponibles";
+            }
+        }
     }
-    //cout << "No se ha encontrado la bebida" << endl;
+    // cout << "No se ha encontrado la bebida" << endl;
     return contadorpacks6;
 }
 int BuscarBebidapack12(string nombreBebida)
@@ -448,14 +468,17 @@ int BuscarBebidapack12(string nombreBebida)
         {
             /*cout << "Bebida encontrada\n Precio $" << bebida.precio << endl;
             return;*/
-            if(bebida.tipo_bebida == 2){
+            if (bebida.tipo_bebida == 2)
+            {
                 contadorpacks12 = contadorpacks12 + bebida.cantidad;
-            } else{
-                //cout << "No disponibles";
             }
-        } 
+            else
+            {
+                // cout << "No disponibles";
+            }
+        }
     }
-    //cout << "No se ha encontrado la bebida" << endl;
+    // cout << "No se ha encontrado la bebida" << endl;
     return contadorpacks12;
 }
 
@@ -469,14 +492,17 @@ int BuscarBebidapack24(string nombreBebida)
         {
             /*cout << "Bebida encontrada\n Precio $" << bebida.precio << endl;
             return;*/
-            if(bebida.tipo_bebida == 3){
+            if (bebida.tipo_bebida == 3)
+            {
                 contadorpacks24 = contadorpacks24 + bebida.cantidad;
-            } else{
-                //cout << "No disponibles";
             }
-        } 
+            else
+            {
+                // cout << "No disponibles";
+            }
+        }
     }
-    //cout << "No se ha encontrado la bebida" << endl;
+    // cout << "No se ha encontrado la bebida" << endl;
     return contadorpacks24;
 }
 
@@ -487,18 +513,23 @@ int BuscarUsuario(string nombreusuario, string contrasenia)
     {
         if (nombreusuario == usuario.usuario)
         {
-            if(usuario.contrasenia == contrasenia){
-                if(usuario.tipo_usuario == 1){
+            if (usuario.contrasenia == contrasenia)
+            {
+                if (usuario.tipo_usuario == 1)
+                {
                     cout << "Bienvenido usuario administrador" << endl;
                     tipo_usu = 1;
                     return tipo_usu;
-                } else {
+                }
+                else
+                {
                     cout << "Bienvenido empleado" << endl;
                     tipo_usu = 2;
                     return tipo_usu;
                 }
-
-            } else {
+            }
+            else
+            {
                 cout << "Credenciales no validas" << endl;
                 return tipo_usu;
             }
@@ -507,7 +538,6 @@ int BuscarUsuario(string nombreusuario, string contrasenia)
     cout << "No se ha encontrado el usuario" << endl;
     return tipo_usu;
 }
-
 
 void BuscaryModificarBebida(string nombreBebida)
 {
@@ -543,4 +573,26 @@ void EliminarBebida(string nombreBebida)
         }
     }
     cout << "No se ha encotrado la bebida" << endl;
+}
+
+void RegistrarVenta(Ventas venta)
+{
+    ofstream file;
+
+    file.open("RegistroVentas.txt", ios::app); // Abre el archivo en modo append
+
+    if (file.is_open())
+    {
+        file << "Nombre de la bebida: " << venta.nombre_bebida << endl;
+        file << "Número de lote: " << venta.lote << endl;
+        file << "Cantidad de packs: " << venta.cantidad << endl;
+        file << "Nombre del consumidor: " << venta.nombre_consumidor << endl;
+        file << "Costo final: $" << venta.precio_total << endl;
+        file << "-------------------------" << endl;
+        file.close();
+    }
+    else
+    {
+        cout << "No se pudo abrir el archivo para guardar el detalle de la venta." << endl;
+    }
 }
