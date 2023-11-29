@@ -579,7 +579,7 @@ void RegistrarVenta(Ventas venta)
 {
     ofstream file;
 
-    file.open("RegistroVentas.txt", ios::app); // Abre el archivo en modo append
+    file.open("RegistroVentas.txt", ios::app); 
 
     if (file.is_open())
     {
