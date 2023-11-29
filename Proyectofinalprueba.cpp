@@ -57,7 +57,7 @@ int BuscarCantidadVenta(int);
 void ImprimirUsuarios();
 void EliminarUsuario(string);
 void RegistrarVenta(Ventas venta);//registro ventas//
-void MostrarRegistro(string archivo);
+void MostrarRegistro(string archivo);//mostrar el archivo//
 
 
 //Definicion de vectores
